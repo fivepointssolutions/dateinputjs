@@ -15,7 +15,7 @@ This code was originally based on Dan Web's code for date_selector.js, but
 has been modified from its original form. You can find Dan's original
 code here:
 
-http://svn.danwebb.net/external/lowpro/trunk/behaviours/date_selector.js
+http://github.com/danwrong/low-pro/blob/master/behaviours/date_selector.js
 
 --------------------------------------------------------------------------
 
