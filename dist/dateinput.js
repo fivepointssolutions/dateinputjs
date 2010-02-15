@@ -16,7 +16,7 @@
  * has been modified from its original form. You can find Dan's original
  * code here:
  * 
- * http://svn.danwebb.net/external/lowpro/trunk/behaviours/date_selector.js
+ * http://github.com/danwrong/low-pro/blob/master/behaviours/date_selector.js
  * 
  * --------------------------------------------------------------------------
  * 
@@ -161,12 +161,26 @@ DateInputBehavior.Calendar = Behavior.create({
     this.date = this.selector.getDate();
     this.redraw();
     this.element.setStyle({
-      'top': this.selector.element.cumulativeOffset().top + this.selector.element.getHeight() + 2 + 'px',
+      'top': this.vertical_offset(this.selector.element) + 'px',
       'left': Math.max(this.selector.element.cumulativeOffset().left + this.selector.element.getWidth() - this.element.getWidth() - 4, this.selector.element.cumulativeOffset().left) + 'px',
       'z-index': 10001
     });
     this.element.show();
     this.active = true;
+  },
+  
+  vertical_offset: function(selector){
+    default_vertical_offset = this.selector.element.cumulativeOffset().top + this.selector.element.getHeight() + 2;
+    this_height = this.element.getHeight();
+    if(document.viewport.getHeight() > default_vertical_offset + this_height) {
+      top_value = default_vertical_offset;
+    } else {
+      top_value = (default_vertical_offset - this_height - selector.getHeight() - 6);
+    }
+    if(top_value < document.viewport.getScrollOffsets().top) {
+      top_value = document.viewport.getScrollOffsets().top;
+    }
+    return top_value;
   },
   
   hide: function() {
